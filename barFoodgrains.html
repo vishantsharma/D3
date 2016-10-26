@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Foodgrains</title>
-	
+	<h1 align="center">Bar chart of all foodgrain type vs production</h1>
 	<style>
 		
 
@@ -74,6 +74,8 @@ var yAxis = d3.svg.axis()
       d.Particulars=d.Particulars;
       console.log(d["3-2013"]);
     });
+    
+    
     
     data.sort(function(a,b) {
       return b["3-2013"] - a["3-2013"];

@@ -3,33 +3,15 @@
 
 <head>
   <title>Bar chart of all oilseed crop type vs production</title>
+  <link rel="stylesheet" type="text/css" href="./CSS/bar.css">
    <h1 align="center">Bar chart of all oilseed crop type vs production</h1>
    <br>
- <style>
-
- .bar{
-   fill: steelblue;
- }
-
- .axis {
-   font: 15px "comic_sans";
-   font-weight: bold;
-   fill:steelblue;
- }
-
- .axis path,
- .axis line {
-   fill: none;
-   stroke: #000;
-   shape-rendering: crispEdges;
- }
-
- </style>
 </head>
 
 <body>
  
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 <script>
 // set the dimensions of the canvas
@@ -54,6 +36,13 @@ var yAxis = d3.svg.axis()
    .orient("left")
    .ticks(10);
 
+    var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Value:</strong> <span style='color:red'>" + d["3-2013"] + "</span>";
+  })
+
 
 // add the SVG element
 var svg = d3.select("body").append("svg")
@@ -63,6 +52,7 @@ var svg = d3.select("body").append("svg")
    .attr("transform", 
          "translate(" + margin.left + "," + margin.top + ")");
 
+svg.call(tip);
 
 // load the data
 d3.json("../JSON/oilseedOne.json", function(error, data) {
@@ -112,9 +102,18 @@ d3.json("../JSON/oilseedOne.json", function(error, data) {
      .attr("x", function(d) { return x(d.Particulars); })
      .attr("width", x.rangeBand())
      .attr("y", function(d) { return y(d["3-2013"]); })
-     .attr("height", function(d) { return height - y(parseFloat(d["3-2013"])); });
+     .attr("height", function(d) { return height - y(parseFloat(d["3-2013"])); })
+
+     .on('mouseover', tip.show)
+                .on('mouseout', tip.hide)
+
+
 
 });
+    function type(d) {
+  d["3-2013"] = +d["3-2013"] ;
+  return d;
+}
 
 </script>
 
