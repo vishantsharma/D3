@@ -9,13 +9,16 @@ var isHeader = true;
 
 var agV = { " 3-1993": 0, " 3-1994": 0, " 3-1995": 0, " 3-1996": 0, " 3-1997": 0, " 3-1998": 0, " 3-1999": 0, " 3-2000": 0, " 3-2001": 0, " 3-2002": 0, " 3-2003": 0, " 3-2004": 0, " 3-2005": 0, " 3-2006": 0, " 3-2007": 0, " 3-2008": 0, " 3-2009": 0, " 3-2010": 0, " 3-2011": 0, " 3-2012": 0, " 3-2013": 0, " 3-2014": 0 }
 
-
+/*Reading the .CSV file line by line */
 const rl = readline.createInterface({
     input: fs.createReadStream('./CSV/Production-Department_of_Agriculture_and_Cooperation_1.csv')
 });
+
+/*Callback Function for fetching the data*/
 rl.on('line', function(line) {
     var lineRecords = line.trim().split(',');
 
+/*Getting all the headers from the .CSV file*/
     if (isHeader) {
 
         header = line.trim().split(',');
@@ -78,6 +81,7 @@ rl.on('line', function(line) {
 
 });
 
+/*Pushing the data and creating the JSON file*/
 rl.on('close', function(line) {
     var writeStream = fs.createWriteStream('../JSON/commercial.json', { 'flags': 'a' });
     writeStream.write("[");

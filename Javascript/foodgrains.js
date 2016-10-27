@@ -31,6 +31,8 @@ rl.on('line', function(line) {
 				{
 					tempData[header[i]]=lineRecords[i];
 				}
+
+				/*Getting data for the year 2013*/
 					else
 					{
 						tempData[header[i]]=parseFloat(lineRecords[i+1].replace("NA",0));}		

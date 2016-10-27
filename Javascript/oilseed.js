@@ -26,7 +26,7 @@ rl.on('line', function(line) {
 		/*Getting data for required fields*/
 		  else if((header[i]=="Particulars")|| (header[i]=="3-2013"))
 		  {
-			
+			/*Getting data for the year 2013*/
 			if(lineRecords[0].includes("Oilseeds"))
 			{
 				if(i==0)

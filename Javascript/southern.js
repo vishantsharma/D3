@@ -25,6 +25,7 @@ rl.on('line', function(line) {
 		/*Getting data for required fields*/
 		else if((header[i]=="Particulars")|| (/3-/i.test(header[i])))
 		{
+			/*Getting data for the four Southern states*/
 			if(lineRecords[0].includes("Rice Yield Karnataka") || lineRecords[0].includes("Rice Yield Andhra Pradesh") || lineRecords[0].includes("Rice Yield Kerala") || lineRecords[0].includes("Rice Yield Tamil Nadu") )
 			{
 				if(i==0)
